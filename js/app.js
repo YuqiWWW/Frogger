@@ -46,7 +46,7 @@ class Player {
         this.y = 400;
     }
     update (){
-        if (this.y <= -15) {
+        if (this.y < -15) {
             win = true;
             alert("Congrats, you've won the game!");
             this.reset();
@@ -63,7 +63,7 @@ class Player {
         if (key === 'right' && this.x <= 300) {
             this.x += 100;
         }
-        if (key === 'up'  && this.y >= 68) {
+        if (key === 'up'  && this.y >= -15) {
             this.y -= 83;
         }
         if (key === 'down' && this.y <= 317) {
