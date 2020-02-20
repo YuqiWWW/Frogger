@@ -26,9 +26,9 @@ Enemy.prototype.update = function(dt) {
         player.reset();
         return;
     }
-    // if (this.x >= 600) {
-    //     allEnemies.pop(this);
-    // }
+    if (this.x >= 600) {
+        this.x = 0;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -90,11 +90,13 @@ let enemy1 = new Enemy();
 allEnemies.push(enemy1);
 let player = new Player();
 
-for (let i = 4; i > 0 && (!win); i--){
-    setTimeout(function () {
-        enemy1 = new Enemy();
-        allEnemies.push(enemy1);
-    }, 3000);
+for (let i = 3; i > 0 && (!win); i--){
+    // setTimeout(function () {
+    //     enemy1 = new Enemy();
+    //     allEnemies.push(enemy1);
+    // }, 3000);
+    enemy1 = new Enemy();
+    allEnemies.push(enemy1);
 }
 
 
