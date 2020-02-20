@@ -21,7 +21,7 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x = this.x + dt * this.speed;
 
-    if (Math.floor(this.x) == player.x && this.y == player.y) {
+    if (Math.floor(this.x + 47) == player.x && this.y == player.y) {
         console.log("collision");
         player.reset();
         return;
