@@ -1,3 +1,5 @@
+
+let win = false;
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -8,7 +10,7 @@ var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
     this.x = 0;
     this.y = [68, 151, 234][Math.floor(Math.random()*3)];
-    this.speed = Math.random() * 100;
+    this.speed = Math.random() * 200;
 };
 
 // Update the enemy's position, required method for game
@@ -18,6 +20,15 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x = this.x + dt * this.speed;
+
+    if (Math.floor(this.x) == player.x && this.y == player.y) {
+        console.log("collision");
+        player.reset();
+        return;
+    }
+    // if (this.x >= 600) {
+    //     allEnemies.pop(this);
+    // }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -35,6 +46,11 @@ class Player {
         this.y = 400;
     }
     update (){
+        if (this.y <= -15) {
+            win = true;
+            alert("Congrats, you've won the game!");
+            this.reset();
+        }
 
     }
     render() {
@@ -56,9 +72,7 @@ class Player {
         // console.log(this.x, this.y);
 
         // reset
-        if (this.y <= 0) {
-            this.reset();
-        }
+        this.update();
     }
     
     reset() {
@@ -75,6 +89,14 @@ let allEnemies = [];
 let enemy1 = new Enemy();
 allEnemies.push(enemy1);
 let player = new Player();
+
+for (let i = 4; i > 0 && (!win); i--){
+    setTimeout(function () {
+        enemy1 = new Enemy();
+        allEnemies.push(enemy1);
+    }, 3000);
+}
+
 
 
 // This listens for key presses and sends the keys to your
